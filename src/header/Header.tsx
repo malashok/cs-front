@@ -9,7 +9,7 @@ const Header: FunctionComponent<never> = () => {
             <nav>
                 <ul className="header-nav">
                     <li>
-                        <NavLink className="nav-link" to="/">Продукти</NavLink>
+                        <NavLink className="nav-link" to="/products">Продукти</NavLink>
                     </li>
                     <li>
                         <NavLink className="nav-link" to="/groups">Групи</NavLink>
