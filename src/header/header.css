@@ -1,0 +1,64 @@
+.header-wrapper {
+    background-color: rgba(255, 255, 255, 0.8);
+
+    color: black;
+
+    width: 100%;
+    height: 60px;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 22px;
+    box-sizing: border-box;
+
+    padding: 0 20px;
+
+    position: fixed;
+    top: 0;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+
+    z-index: 999;
+}
+
+@supports not ((-webkit-backdrop-filter: saturate(180%) blur(20px))) {
+    .header-wrapper {
+        background-color: rgba(255, 255, 255, 0.9);
+    }
+}
+
+.header-nav {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    box-sizing: border-box;
+    height: 60px;
+    border-bottom: none;
+}
+
+.logo-wrapper > img {
+    height: 60px;
+    width: auto;
+    mix-blend-mode: multiply;
+}
+.nav-link {
+    color: black;
+    text-decoration: none;
+    padding: 0 !important;
+}
+
+.nav-link.active {
+    color: #757474;
+}
+
+.nav-link:hover {
+    color: #757474;
+    text-decoration: none;
+}
