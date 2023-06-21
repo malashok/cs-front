@@ -1,7 +1,5 @@
 import {FunctionComponent, useEffect, useState} from "react";
 import "./stats.css";
-import Dropdown from 'react-dropdown';
-import {calculateSize} from "@iconify/react";
 
 interface ProductInterface {
     id: number;
@@ -14,11 +12,8 @@ interface ProductInterface {
 }
 const Stats: FunctionComponent = () => {
     const all = "Всі групи"
-    console.log("stats");
-    //let allProducts = [];
     const [allProducts, setAllProducts] = useState<ProductInterface[]>([]);
     const [options, setOptions] = useState([]);
-    const [selectedGroup, setSelectedGroup] = useState(all);
     const [price, setPrice] = useState(0);
     const [amount, setAmount] = useState(0);
     useEffect(() => {
@@ -34,7 +29,6 @@ const Stats: FunctionComponent = () => {
             setOptions(result);
         });
         fetch("http://localhost:5001/api/goods").then((res) => {
-                console.log(res)
                 if (res.ok) {
                     return res.json();
                 }
