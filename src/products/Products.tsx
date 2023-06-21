@@ -2,26 +2,22 @@ import {FunctionComponent, useEffect, useState} from 'react';
 import "./products.css";
 import "./button.css";
 import "./filters.css";
+import EditFormProduct from "../forms/EditFormProduct";
+import ProductInterface from "../Interfaces/ProductInterface";
+import GroupInterface from "../Interfaces/GroupInterface";
+import DeleteFormProduct from "../forms/DeleteFormProduct";
 
-interface ProductInterface {
-    id: number;
-    name: string;
-    price: number;
-    amount: number;
-    group_name: string;
-    producer: string;
-    description: string;
-}
-interface GroupInterface {
-    id: number;
-    name: string;
-    desc: string;
-}
+
+
 
 const Products: FunctionComponent = () => {
     const [arr, setArr] = useState<ProductInterface[]>([]);
     const [groups, setGroups] = useState<GroupInterface[]>([]);
     const [filteredArr ,setFilteredArr] = useState<ProductInterface[]>([]);
+    const [buttonPopup, setButtonPopup] = useState(false);
+    const [buttonDelPopup, setButtonDelPopup] = useState(false);
+    const [idProd, setIdProd] = useState(-1);
+
     useEffect(() => {
         fetch("http://localhost:5001/api/goods").then((res) => {
                 console.log(res)
@@ -32,9 +28,10 @@ const Products: FunctionComponent = () => {
         ).then((jsonResponse) => {
             setArr(jsonResponse.result)
             setFilteredArr(jsonResponse.result);
+            filteredArr.sort((prev, curr) => prev.id-curr.id);
             });
 
-    }, []);
+    }, [buttonPopup, buttonDelPopup]);
     useEffect(() => {
         fetch("http://localhost:5001/api/groups").then((res) => {
                 console.log(res)
@@ -76,7 +73,7 @@ const Products: FunctionComponent = () => {
             } else {
                 return x;
             }
-        });
+        }).sort((prev, curr) => prev.id-curr.id);
         setFilteredArr(filterArr);
     };
 
@@ -142,11 +139,17 @@ const Products: FunctionComponent = () => {
                             <td className="text-left desc">{el.description}</td>
                             <td><div className="columns">
                                 <div>
-                                    <button className="button-24 "> Редагувати
+                                    <button className="button-24" onClick={() => {
+                                        setButtonPopup(true);
+                                        setIdProd(el.id);
+                                    }}> Редагувати
                                     </button>
                                 </div>
                                 <div>
-                                    <button className="button-24 red"> Видалити
+                                    <button className="button-24 red" onClick={() => {
+                                        setButtonDelPopup(true);
+                                        setIdProd(el.id);
+                                    }}> Видалити
                                     </button>
                                 </div>
                             </div></td>
@@ -159,7 +162,8 @@ const Products: FunctionComponent = () => {
             </table>
 
         </div>
-
+    <EditFormProduct trigger={buttonPopup} setTrigger={setButtonPopup} prodId={idProd}></EditFormProduct>
+    <DeleteFormProduct trigger={buttonDelPopup} setTrigger={setButtonDelPopup} prodId={idProd}></DeleteFormProduct>
 </div>
     );
 };
