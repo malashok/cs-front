@@ -22,7 +22,7 @@ const Products: FunctionComponent = () => {
                 }
             }
         ).then((jsonResponse) => {
-            setArr(jsonResponse)
+            setArr(JSON.parse(jsonResponse).result)
         });
     }, []);
 
