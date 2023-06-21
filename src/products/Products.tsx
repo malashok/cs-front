@@ -15,7 +15,7 @@ interface ProductInterface {
 const Products: FunctionComponent = () => {
     const [arr, setArr] = useState<ProductInterface[]>([]);
     useEffect(() => {
-        fetch("https://localhost:5001/api/goods").then((res) => {
+        fetch("http://localhost:5001/api/goods").then((res) => {
                 console.log(res)
                 if (res.ok) {
                     return res.json();
