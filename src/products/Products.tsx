@@ -7,7 +7,7 @@ interface ProductInterface {
     name: string;
     price: number;
     amount: number;
-    group: string;
+    group_name: string;
     producer: string;
     description: string;
 }
@@ -22,7 +22,7 @@ const Products: FunctionComponent = () => {
                 }
             }
         ).then((jsonResponse) => {
-            setArr(JSON.parse(jsonResponse).result)
+            setArr(jsonResponse.result)
         });
     }, []);
 
@@ -50,7 +50,7 @@ const Products: FunctionComponent = () => {
                             <td className="text-left">{el.name}</td>
                             <td className="text-left">{el.amount}</td>
                             <td className="text-left">{el.price}</td>
-                            <td className="text-left">{el.group}</td>
+                            <td className="text-left">{el.group_name}</td>
                             <td className="text-left">{el.producer}</td>
                             <td className="text-left desc">{el.description}</td>
                             <td><div className="columns">

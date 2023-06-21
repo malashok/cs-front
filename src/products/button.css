@@ -43,9 +43,10 @@
 
 .button-24:hover,
 .button-24:active {
-    background-color: initial;
+    background-color: #2ea207;
+    border: 1px solid #2ea207;
     background-position: 0 0;
-    color: #3EC70B;
+    color: white;
 }
 
 .button-24:active {
@@ -137,9 +138,10 @@
 
 .red:hover,
 .red:active {
-    background-color: initial !important;
+    border: 1px solid #c20e0e !important;
+    background-color: #c20e0e !important;
     background-position: 0 0 !important;
-    color: #fc2828 !important;
+    color: white !important;
 }
 .red:active {
     opacity: .5;

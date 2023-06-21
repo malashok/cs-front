@@ -19,9 +19,6 @@ const Header: FunctionComponent<never> = () => {
                     </li>
                 </ul>
             </nav>
-            <div className="logo-wrapper">
-                <img src="src/Images/logo-transparent-bg.png" alt="Logo" />
-            </div>
         </div>
     );
 };
