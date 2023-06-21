@@ -21,6 +21,7 @@ interface GroupInterface {
 const Products: FunctionComponent = () => {
     const [arr, setArr] = useState<ProductInterface[]>([]);
     const [groups, setGroups] = useState<GroupInterface[]>([]);
+    const [filteredArr ,setFilteredArr] = useState<ProductInterface[]>([]);
     useEffect(() => {
         fetch("http://localhost:5001/api/goods").then((res) => {
                 console.log(res)
@@ -30,7 +31,9 @@ const Products: FunctionComponent = () => {
             }
         ).then((jsonResponse) => {
             setArr(jsonResponse.result)
-        });
+            setFilteredArr(jsonResponse.result);
+            });
+
     }, []);
     useEffect(() => {
         fetch("http://localhost:5001/api/groups").then((res) => {
@@ -45,16 +48,27 @@ const Products: FunctionComponent = () => {
     }, []);
     const [filterSearch, setFilterSearch] = useState('');
     const [filterGroup, setFilterGroup] = useState('all');
-    const [filterPriceTo, setFilterPriceTo] = useState(1000000000);
+    const [filterPriceTo, setFilterPriceTo] = useState(0);
     const [filterPriceFrom, setFilterPriceFrom] = useState(0);
-    const [change, setFilterChange] = useState(false);
-    let filteredArr = Object.assign(arr);
 
-    useEffect(() =>{
-        filteredArr = arr.filter((x) => {
+
+    const handleSubmit = (e) =>{
+        e.preventDefault();
+        const filterArr = arr.filter((x) => {
+            if (filterGroup !== 'all') {
+                return x.group_name === filterGroup;
+            } else {
+                return x;
+            }
+        }).filter((x) => {
+            console.log(filterPriceFrom + " " + filterPriceTo)
+            if(filterPriceTo === 0) return x.price >= Number(filterPriceFrom)
+            return x.price >= Number(filterPriceFrom) && x.price <= Number(filterPriceTo);
+        }).filter((x) => {
             if (filterSearch !== '') {
                 for (const p in x) {
-                    if (p.includes(filterSearch)) {
+                    console.log(p)
+                    if (x[p] == filterSearch) {
                         return x;
                     }
                 }
@@ -62,20 +76,10 @@ const Products: FunctionComponent = () => {
             } else {
                 return x;
             }
-        }).filter((x) => {
-            if (filterGroup !== 'all') {
-                return x.group_name === filterGroup;
-            } else {
-                return x;
-            }
-        }).filter((x) => {
-            return x.price > filterPriceFrom && x.price < filterPriceTo;
         });
-    }, [change]);
-    const handleSubmit = (e) =>{
-        e.preventDefault();
-        setFilterChange(true);
-    }
+        setFilteredArr(filterArr);
+    };
+
     return (
 <div>
     <div className="cont">
@@ -89,17 +93,17 @@ const Products: FunctionComponent = () => {
         <div className="row cont">
             <div className = "col">
         <label>Ціна від:
-            <input type="number" className ="input"
+            <input type="number" className ="input" min="0"
                    onChange={(e) => setFilterPriceFrom(Number(e.target.value))}/>
         </label></div>
         <div className = "col"><label> Ціна до:
-            <input type="number" className ="input"
+            <input type="number" className ="input" min="1"
                    onChange={(e) => setFilterPriceTo(Number(e.target.value))}/>
         </label></div>
             <div className = "col">
             <label>Група:
                 <select onChange={(e) => setFilterGroup(e.target.value)}>
-                    <option value="">Виберіть опцію</option>
+                    <option value="all">Виберіть опцію</option>
                     {groups.map((el=>{return (
                         <option key={el.name} value={el.name}>{el.name}</option>);
                     }))}
