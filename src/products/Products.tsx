@@ -1,23 +1,75 @@
-import {FunctionComponent} from 'react';
+import {FunctionComponent, useEffect, useState} from 'react';
+import "./products.css";
+import "./button.css";
+
+interface ProductInterface {
+    id: number;
+    name: string;
+    price: number;
+    amount: number;
+    group: string;
+    producer: string;
+    description: string;
+}
 
 const Products: FunctionComponent = () => {
+    const [arr, setArr] = useState<ProductInterface[]>([]);
+    useEffect(() => {
+        fetch("https://localhost:5001/api/goods").then((res) => {
+                console.log(res)
+                if (res.ok) {
+                    return res.json();
+                }
+            }
+        ).then((jsonResponse) => {
+            setArr(jsonResponse)
+        });
+    }, []);
 
     return (
 
-        <div>
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-            <div className = "center">
-                <div>
-                    <h2>Найкращий спосіб допомогти нам
-                        і нашим хвостикам – пожертвувати будь-яку суму на корм, лікування та забезпечення роботи
-                        притулку.</h2>
-                </div>
-                <div className="cent">
-                    <form action="https://click.pulse.is/public/s/MjMyOTY=/p/MjcyMzA=/l/aHR0cHM6Ly9zZW5kLm1vbm9iYW5rLnVhL2phci8zcFA4VjhnVXdF" >
-                        <button type="submit" className="button-24" role="button"> <h3 className = "forText">Допомогти</h3>
-                            <span className="material-symbols-outlined">pets</span>
-                        </button></form></div>
-            </div>
+        <div className = "forTable">
+            <table className="table-fill">
+                <thead>
+                <tr>
+                    <th className="text-left">id</th>
+                    <th className="text-left">Назва</th>
+                    <th className="text-left">Кількість</th>
+                    <th className="text-left">Ціна</th>
+                    <th className="text-left">Група</th>
+                    <th className="text-left">Виробник</th>
+                    <th className="text-left desc">Опис</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody className="table-hover">
+                {arr.map((el) => {
+                    return(
+                        <tr>
+                            <td className="text-left">{el.id}</td>
+                            <td className="text-left">{el.name}</td>
+                            <td className="text-left">{el.amount}</td>
+                            <td className="text-left">{el.price}</td>
+                            <td className="text-left">{el.group}</td>
+                            <td className="text-left">{el.producer}</td>
+                            <td className="text-left desc">{el.description}</td>
+                            <td><div className="columns">
+                                <div>
+                                    <button className="button-24 "> Редагувати
+                                    </button>
+                                </div>
+                                <div>
+                                    <button className="button-24 red"> Видалити
+                                    </button>
+                                </div>
+                            </div></td>
+                        </tr>
+
+                    );
+                })}
+
+                </tbody>
+            </table>
 
         </div>
 
