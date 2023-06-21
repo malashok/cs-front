@@ -5,6 +5,8 @@ import './index.css'
 import Products from "./products/Products";
 import App from "./App";
 import LoginForm from "./loginForm/LoginForm";
+import Stats from "./stats/Stats";
+
 
 const router = createBrowserRouter([
     {
@@ -16,10 +18,13 @@ const router = createBrowserRouter([
                 element: <Products />,
             },
             {
+                path: "/stats",
+                element: <Stats />,
+            },
+            {
                 path: "/auth",
                 element: <LoginForm />,
             }
-
         ],
     },
 ]);

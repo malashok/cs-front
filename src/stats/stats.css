@@ -1,0 +1,18 @@
+.statDiv{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+}
+.statDivDivs{
+    width: 20%;
+    padding: 10px;
+}
+.data_text{
+    color: #fc2828;
+    font-size: 20px;
+    font-weight: bold;
+}
+.stats_pad{
+   margin-top: 25px;
+}
