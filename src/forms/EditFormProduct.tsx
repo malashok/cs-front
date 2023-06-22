@@ -1,6 +1,16 @@
 import React, {FunctionComponent, useEffect, useState} from 'react';
-import ProductInterface from "../Interfaces/ProductInterface";
 import GroupInterface from "../Interfaces/GroupInterface";
+import ProductInterface from "../Interfaces/ProductInterface";
+
+
+interface ProductInterface2 {
+    name: string;
+    price: number;
+    amount: number;
+    group_name: string;
+    producer: string;
+    description: string;
+}
 
 const EditFormProduct = (props) => {
     const [groups, setGroups] = useState<GroupInterface[]>([]);
@@ -11,11 +21,10 @@ const EditFormProduct = (props) => {
                 }
             }
         ).then((jsonResponse) => {
-            setFormData(jsonResponse)
+            setFormData(jsonResponse);
         }).catch((er)=>{});
     }, [props.prodId]);
-    const [formData, setFormData] = useState<ProductInterface>({
-        id: props.prodId,
+    const [formData, setFormData] = useState<ProductInterface2>({
         name: "",
         price: -1,
         amount: 0,
@@ -26,8 +35,8 @@ const EditFormProduct = (props) => {
 
 
     const handleSubmit = (e) => {
+
         e.preventDefault();
-        formData.id = props.prodId;
         fetch(`http://localhost:5001/api/goods/${props.prodId}`, {
             headers: {
                 Accept: "application/json",
@@ -36,13 +45,7 @@ const EditFormProduct = (props) => {
             method: "PATCH",
 
             body: JSON.stringify(formData)
-        })
-            .then(function (response) {
-
-                 console.log(response);
-                return response.json();
-
-            }).then(() => props.setTrigger(false));
+        }).then(() => props.setTrigger(false));
     };
 
     useEffect(() => {
@@ -64,7 +67,7 @@ const EditFormProduct = (props) => {
                     <div className="forClose">
                         <button className="closeButton" onClick={() => props.setTrigger(false)}>&times;</button>
                     </div>
-                    <h4>ID: {formData.id}</h4>
+                    <h4>ID: {props.prodId}</h4>
                     <div className="columns">
                         <div>
                             <label>Назва:
