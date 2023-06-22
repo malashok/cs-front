@@ -55,23 +55,25 @@ const Stats: FunctionComponent = () => {
     }
 
     return (
-<div className="statDiv">
-    <div className="statDivDivs stats_pad">
-    <p>Оберіть групу товарів для статистики:</p>
-    </div>
+        <div>
+<div className="statDiv cont">
     <div className = "col statDivDivs stats_pad">
+        <label>Оберіть групи:
                 <select onChange={(o) => calculateData(o.target.value)}>
                     <option value="all"></option>
                     {options.map((opt=>{return (
                         <option key={opt} value={opt}>{opt}</option>);
                     }))}
                 </select>
+        </label>
     </div>
-    <div className="statDivDivs"></div>
+</div>
+            <div className="cont">
     <div className="statDivDivs">
         <p className="data_text">Ціна товарів: {price} грн</p>
         <p className="data_text">Кількість товарів: {amount} шт</p>
     </div>
+</div>
 </div>
     );
 };

@@ -9,9 +9,9 @@
     padding: 10px;
 }
 .data_text{
-    color: #fc2828;
     font-size: 20px;
     font-weight: bold;
+    text-align: center;
 }
 .stats_pad{
    margin-top: 25px;
