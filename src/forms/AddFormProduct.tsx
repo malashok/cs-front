@@ -67,10 +67,12 @@ return (props.trigger) ? (
                         </label>
                         <label>Група:
                             <select required onChange={(e) => setFormData({...formData, group_name: e.target.value})}>
+                                <option value=""></option>
                                 {groups.map((el=>{return (
                                     <option key={el.name} value={el.name}>{el.name}</option>);
                                 }))}
-                            </select></label>
+                            </select>
+                        </label>
                     </div>
                     <div>
                         <label>Кількість:
