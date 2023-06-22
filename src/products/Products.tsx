@@ -6,8 +6,7 @@ import EditFormProduct from "../forms/EditFormProduct";
 import ProductInterface from "../Interfaces/ProductInterface";
 import GroupInterface from "../Interfaces/GroupInterface";
 import DeleteFormProduct from "../forms/DeleteFormProduct";
-
-
+import AddFormProduct from "../forms/AddFormProduct";
 
 
 const Products: FunctionComponent = () => {
@@ -16,6 +15,7 @@ const Products: FunctionComponent = () => {
     const [filteredArr ,setFilteredArr] = useState<ProductInterface[]>([]);
     const [buttonPopup, setButtonPopup] = useState(false);
     const [buttonDelPopup, setButtonDelPopup] = useState(false);
+    const [buttonAddPopup, setButtonAddPopup] = useState(false);
     const [idProd, setIdProd] = useState(-1);
 
     useEffect(() => {
@@ -31,7 +31,7 @@ const Products: FunctionComponent = () => {
             filteredArr.sort((prev, curr) => prev.id-curr.id);
             });
 
-    }, [buttonPopup, buttonDelPopup]);
+    }, [buttonPopup, buttonDelPopup, buttonAddPopup]);
     useEffect(() => {
         fetch("http://localhost:5001/api/groups").then((res) => {
                 console.log(res)
@@ -123,7 +123,7 @@ const Products: FunctionComponent = () => {
                     <th className="text-left">Група</th>
                     <th className="text-left">Виробник</th>
                     <th className="text-left desc">Опис</th>
-                    <th></th>
+                    <th className="forAdd"><button className="addButton" onClick={() => setButtonAddPopup(true)}>+</button></th>
                 </tr>
                 </thead>
                 <tbody className="table-hover">
@@ -164,6 +164,7 @@ const Products: FunctionComponent = () => {
         </div>
     <EditFormProduct trigger={buttonPopup} setTrigger={setButtonPopup} prodId={idProd}></EditFormProduct>
     <DeleteFormProduct trigger={buttonDelPopup} setTrigger={setButtonDelPopup} prodId={idProd}></DeleteFormProduct>
+    <AddFormProduct trigger={buttonAddPopup} setTrigger={setButtonAddPopup}></AddFormProduct>
 </div>
     );
 };

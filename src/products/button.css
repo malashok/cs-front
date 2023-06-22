@@ -94,3 +94,19 @@
 .red:active {
     opacity: .5;
 }
+.addButton{
+    color: #f2f2f2;
+    float: right;
+    height: 100%;
+    font-size: 2em;
+    width: auto;
+    background: none;
+    border: none;
+}
+.button-plus:hover{
+    transform: scale(1.3);
+}
+
+.forAdd{
+    text-align: right;
+}
