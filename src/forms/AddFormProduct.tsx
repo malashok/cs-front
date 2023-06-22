@@ -54,7 +54,7 @@ return (props.trigger) ? (
                 <div className="forClose">
                     <button className="closeButton" onClick={() => props.setTrigger(false)}>&times;</button>
                 </div>
-                <h4>ID: {props.prodId}</h4>
+                <h4>Створити продукт:</h4>
                 <div className="columns">
                     <div>
                         <label>Назва:

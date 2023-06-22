@@ -6,6 +6,7 @@ import Products from "./products/Products";
 import App from "./App";
 import LoginForm from "./loginForm/LoginForm";
 import Stats from "./stats/Stats";
+import Groups from "./groups/Groups";
 
 
 const router = createBrowserRouter([
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
             {
                 path: "/auth",
                 element: <LoginForm />,
+            },
+            {
+                path: "/groups",
+                element: <Groups />,
             }
         ],
     },

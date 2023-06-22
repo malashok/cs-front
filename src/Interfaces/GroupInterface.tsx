@@ -1,7 +1,7 @@
 interface GroupInterface {
     id: number;
     name: string;
-    desc: string;
+    description: string;
 }
 
 export default GroupInterface;
