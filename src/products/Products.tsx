@@ -7,6 +7,7 @@ import ProductInterface from "../Interfaces/ProductInterface";
 import GroupInterface from "../Interfaces/GroupInterface";
 import DeleteFormProduct from "../forms/DeleteFormProduct";
 import AddFormProduct from "../forms/AddFormProduct";
+import EditAmountForm from "../forms/EditAmountForm";
 
 
 const Products: FunctionComponent = () => {
@@ -17,6 +18,8 @@ const Products: FunctionComponent = () => {
     const [buttonDelPopup, setButtonDelPopup] = useState(false);
     const [buttonAddPopup, setButtonAddPopup] = useState(false);
     const [idProd, setIdProd] = useState(-1);
+    const [editAmount, setEditAmount] = useState(false);
+    const [currentAmount, setCurrentAmount] = useState(-1);
 
     useEffect(() => {
         fetch("http://localhost:5001/api/goods").then((res) => {
@@ -31,7 +34,7 @@ const Products: FunctionComponent = () => {
             filteredArr.sort((prev, curr) => prev.id-curr.id);
             });
 
-    }, [buttonPopup, buttonDelPopup, buttonAddPopup]);
+    }, [buttonPopup, buttonDelPopup, buttonAddPopup, editAmount]);
     useEffect(() => {
         fetch("http://localhost:5001/api/groups").then((res) => {
                 console.log(res)
@@ -132,7 +135,7 @@ const Products: FunctionComponent = () => {
                         <tr key={el.id}>
                             <td className="text-left">{el.id}</td>
                             <td className="text-left">{el.name}</td>
-                            <td className="text-left">{el.amount}</td>
+                            <td className="text-left" onClick={() => {setEditAmount(true); setIdProd(el.id); setCurrentAmount(el.amount)}}>{el.amount}</td>
                             <td className="text-left">{el.price}</td>
                             <td className="text-left">{el.group_name}</td>
                             <td className="text-left">{el.producer}</td>
@@ -162,6 +165,7 @@ const Products: FunctionComponent = () => {
             </table>
 
         </div>
+    <EditAmountForm trigger={editAmount} setTrigger={setEditAmount} prodId={idProd} currentAmount={currentAmount}></EditAmountForm>
     <EditFormProduct trigger={buttonPopup} setTrigger={setButtonPopup} prodId={idProd}></EditFormProduct>
     <DeleteFormProduct trigger={buttonDelPopup} setTrigger={setButtonDelPopup} prodId={idProd}></DeleteFormProduct>
     <AddFormProduct trigger={buttonAddPopup} setTrigger={setButtonAddPopup}></AddFormProduct>

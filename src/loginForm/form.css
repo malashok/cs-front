@@ -171,3 +171,21 @@
 .labels{
     font-size: 12px;
 }
+.plus-minus{
+    color: #b3b3b3;
+    border: 2px solid lightgrey;
+    background-color: #fff;
+    font-size: 20px;
+    height: 2.5em;
+    width: 2.5em;
+    position: relative;
+}
+.edit-amount{
+    gap: 10px;
+    display: flex;
+    flex-direction: row;
+}
+.newAmount{
+    max-width: 150px;
+}
+
