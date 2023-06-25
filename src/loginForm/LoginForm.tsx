@@ -14,7 +14,6 @@ const LoginForm = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // Perform registration logic with formData
-        console.log(formData);
         // // Reset form fields
         fetch('http://localhost:5001/login', {
             method: 'POST',
@@ -27,7 +26,7 @@ const LoginForm = (props) => {
             .then((data) => {
                 console.log('Response from server:', data);
                 changePage();
-                props.setAuthUser(true);
+                props.setAuthUser(formData.name);
                 setFormData((prevFormData) => ({
                     ...prevFormData}));
                 setFormData({
@@ -42,7 +41,7 @@ const LoginForm = (props) => {
 
     };
 
-    return (!props.authUser) ? (
+    return (props.authUser === "") ? (
         <div className="login-page">
             <div className="form">
                 <form className="login-form" onSubmit={handleSubmit}>

@@ -108,21 +108,23 @@ form.example input[type=text] {
 }
 
 form.example button {
+
     font-family: "Roboto", sans-serif;
    outline: 0;
     border: 0;
     float: left;
     width: 30%;
     padding: 10px;
-    background: #58aada;
-    color: white;
+    /*background: #58aada;*/
+    background: #1b1e24;
+    color:#D5DDE5;
     font-size: 17px;
     border-left: none;
     cursor: pointer;
 }
 
 form.example button:hover {
-    background: #4597bd;
+    background: black;
 }
 
 /* Clear floats */
@@ -138,6 +140,7 @@ form.example::after {
 }
 
 .but{
+    color:#D5DDE5;
     font-family: "Roboto", sans-serif;
     outline: 0;
     border: 0;
@@ -145,12 +148,11 @@ form.example::after {
     width: 100%;
     margin: 22px 0 15px;
     padding: 15px;
-    background: #58aada;
-    color: white;
+    background: #1b1e24;
     font-size: 17px;
     border-left: none;
     cursor: pointer;
 }
 .but:hover {
-    background: #4597bd;
+    background: black;
 }

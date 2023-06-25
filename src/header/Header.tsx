@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 import { NavLink } from "react-router-dom";
 import "./header.css";
 
-const Header: FunctionComponent<never> = () => {
+const Header = (props) => {
 
     return (
         <div className="header-wrapper">
@@ -19,6 +19,7 @@ const Header: FunctionComponent<never> = () => {
                     </li>
                 </ul>
             </nav>
+            <p>{props.user}</p>
         </div>
     );
 };

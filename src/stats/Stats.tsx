@@ -56,8 +56,8 @@ const Stats: FunctionComponent = () => {
 
     return (
         <div>
-<div className="statDiv cont">
-    <div className = "col statDivDivs stats_pad">
+<div className="statDiv">
+    <div className = "statDivDivs">
         <label>Оберіть групи:
                 <select onChange={(o) => calculateData(o.target.value)}>
                     <option value="all"></option>
@@ -68,12 +68,14 @@ const Stats: FunctionComponent = () => {
         </label>
     </div>
 </div>
-            <div className="cont">
-    <div className="statDivDivs">
+    <div className="statDivDivs stats-box">
+        <p className="stats-p">Статистика</p>
+        <hr/>
+        <div className="for-columns">
         <p className="data_text">Ціна товарів: {price} грн</p>
         <p className="data_text">Кількість товарів: {amount} шт</p>
+        </div>
     </div>
-</div>
 </div>
     );
 };

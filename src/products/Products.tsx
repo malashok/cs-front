@@ -67,8 +67,8 @@ const Products: FunctionComponent = () => {
         }).filter((x) => {
             if (filterSearch !== '') {
                 for (const p in x) {
-                    console.log(p)
-                    if (x[p] == filterSearch) {
+                   // if (x[p] == filterSearch) {
+                    if(x[p].toString().toLowerCase().startsWith(filterSearch.toLowerCase())){
                         return x;
                     }
                 }

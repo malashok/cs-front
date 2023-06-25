@@ -2,11 +2,9 @@
     display: flex;
     flex-direction: row;
     width: 100%;
-
 }
 .statDivDivs{
-    width: 20%;
-    padding: 10px;
+margin-top: 20px;
 }
 .data_text{
     font-size: 20px;
@@ -15,4 +13,25 @@
 }
 .stats_pad{
    margin-top: 25px;
+}
+.stats-box{
+    text-align: center;
+    border: black solid 1px;
+    margin-top: 20px;
+}
+hr{
+    width: 90%;
+}
+.for-columns{
+    display: flex;
+    flex-direction: row;
+    gap: 10%;
+   width: 100%;
+}
+.for-columns > p{
+    width: 50%;
+}
+.stats-p{
+    font-size: 25px;
+    font-weight: bold;
 }
